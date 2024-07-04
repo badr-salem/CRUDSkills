@@ -17,7 +17,7 @@
         
     </div>
     <div class="col-4 text-center">
-        <button type="button" class="btn btn-primary">إضافة مهارة</button>
+        <a asp-controller="Skills" asp-action="Create" type="button" class="btn btn-primary">إضافة مهارة</a>
     </div>
 </div>
 <br />
@@ -27,7 +27,7 @@
             <th scope="col">#</th>
             <th scope="col">إسم المهارة</th>
             <th scope="col">حالة التفعيل</th>
-           
+           <th></th>
         </tr>
     </thead>
     <tbody>
@@ -44,6 +44,9 @@
                     <td>غير مفعل</td>
                 }
                 
+                <th>
+                    <a class="btn btn-info" asp-action="Update" asp-route-Id=@item.Id>تعديل</a>
+                </th>
                
             </tr>
         }

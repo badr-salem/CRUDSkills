@@ -1,0 +1,50 @@
+﻿@model Skill
+@{
+    ViewData["Title"] = "Update";
+}
+
+<br/>
+<br/>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="text-center">
+            <h3>
+                تعديل المهارة
+            </h3>
+        </div>
+
+        <form asp-controller="Skills" asp-action="Update" method="post">
+
+            <input asp-for=Id hidden />
+
+            <div class="form-group m-1 p-2">
+                <label for="exampleInputEmail1">إسم المهارة</label>
+                <br />
+                <input asp-for=Name type="text" class="form-control m-2 p-1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="أدخل إسم المهارة">
+            <span asp-validation-for=Name class="text-danger"></span>
+            </div>
+
+            <div dir="ltr" class="m-1 text-end">
+                <br />
+                <input asp-for=IsActive type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1"> تفعيل </label>
+
+                <br />
+            </div>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary">حفظ وإرسال</button>
+        </form>
+
+
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+
+
+
+
+
