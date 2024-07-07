@@ -17,7 +17,11 @@
         
     </div>
     <div class="col-4 text-center">
-        <a asp-controller="Skills" asp-action="Create" type="button" class="btn btn-primary">إضافة مهارة</a>
+        <a asp-controller="Skills" asp-action="Create" type="button" class="btn btn-primary">إضافة مهارة
+
+            <i class="fa fa-plus" aria-hidden="true"></i>
+
+        </a>
     </div>
 </div>
 <br />
@@ -28,6 +32,8 @@
             <th scope="col">إسم المهارة</th>
             <th scope="col">حالة التفعيل</th>
            <th></th>
+           <th></th>
+          
         </tr>
     </thead>
     <tbody>
@@ -45,7 +51,41 @@
                 }
                 
                 <th>
-                    <a class="btn btn-info" asp-action="Update" asp-route-Id=@item.Id>تعديل</a>
+                    <a class="btn btn-info" asp-action="Update" asp-route-Id=@item.Id>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                    @if(item.IsActive == true)
+                    {
+                        <a class="btn btn-outline-danger" asp-action="Activation" asp-route-Id=@item.Id>
+                            إلغاء التفعيل
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+
+                            </a>
+                    }
+                    else
+
+                    {
+                        <a class="btn btn-outline-primary" asp-action="Activation" asp-route-Id=@item.Id>
+                            تفعيل
+                            <i class="fa fa-unlock" aria-hidden="true"></i>
+
+                        </a>
+
+                    }
+         <th class="text-end">
+                    <form asp-action="Delete" asp-route-id=@item.Id method="post" onsubmit="return confirm('هل أنت متأكد أنك تريد الحذف ؟');">
+
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+
+                        </button>
+
+                    </form>
+         </th>
+                   
+                
+                   
+
                 </th>
                
             </tr>

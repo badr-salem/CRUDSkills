@@ -98,5 +98,45 @@ namespace CRUDSkills.Controllers
                 return View(skill);
             }
         }
+
+        public IActionResult Activation(int id)
+        {
+            var skillFromDb = _context.skills.FirstOrDefault(i => i.Id == id);
+            if(skillFromDb == null)
+            {
+                return NotFound();
+            }
+
+            //Check if its active or not
+            if(skillFromDb.IsActive == true)
+            {
+                skillFromDb.IsActive = false;
+                _context.skills.Update(skillFromDb);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                skillFromDb.IsActive = true;
+                _context.skills.Update(skillFromDb);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var skillFromDb = _context.skills.FirstOrDefault(i => i.Id == id);
+            if (skillFromDb == null)
+            {
+                return NotFound();
+            }
+
+            _context.skills.Remove(skillFromDb);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
